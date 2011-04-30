@@ -1,10 +1,12 @@
 do ($) ->
-  $.fn.typed = (settings) ->
+  $.fn.typed = (args...) ->
     config = 
       callback: () ->
       wait: 750
-    if settings
-      $.extend config, settings
+    if args.length is 1 then config.callback = args[0]
+    if args.length is 2
+      config.wait = args[0]
+      config.callback = args[1]
     this.each () ->
       $(this).attr 'old-val', $(this).val()
       that = this

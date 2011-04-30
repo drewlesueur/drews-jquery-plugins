@@ -1,13 +1,19 @@
 (function() {
+  var __slice = Array.prototype.slice;
   (function($) {
-    return $.fn.typed = function(settings) {
-      var config;
+    return $.fn.typed = function() {
+      var args, config;
+      args = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
       config = {
         callback: function() {},
         wait: 750
       };
-      if (settings) {
-        $.extend(config, settings);
+      if (args.length === 1) {
+        config.callback = args[0];
+      }
+      if (args.length === 2) {
+        config.wait = args[0];
+        config.callback = args[1];
       }
       this.each(function() {
         var save, t, that;
